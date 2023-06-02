@@ -1,27 +1,17 @@
 const express=require('express')
 const requireAuth=require('../middleware/requireAuth')
 const {
-    getPosts,
-    createPost,
-    deletePost,
-    likePost,
-    getPost,
-  
+    getFeedPosts,
+    likePost
 }= require('../controllers/postController')
 
 const router=express.Router()
 router.use(requireAuth)
-//get post
-router.get('/:id',getPost)
 
 
-
-router.get('/',getPosts)
-
-router.post('/',createPost)
-
-router.delete('/:id',deletePost)
+router.get('/',getFeedPosts)
 
 router.patch('/:id',likePost)
+
 
 module.exports = router

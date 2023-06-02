@@ -3,7 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const postRoutes = require('./routes/posts')
-//const userRoutes=require('./routes/user')
+const userRoutes=require('./routes/user')
+const feedRoutes=require('./routes/feed')
 
 
 // express app
@@ -19,7 +20,8 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/api/post', postRoutes)
-//app.use('/api/user',userRoutes)
+app.use('/api/user',userRoutes)
+app.use('/api/feed',feedRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

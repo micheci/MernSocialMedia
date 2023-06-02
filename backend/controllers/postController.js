@@ -2,10 +2,17 @@ const Post=require('../models/postModel')
 const mongoose = require('mongoose')
 
 const getPosts=async(req,res)=>{
-    //const user_id=req.user._id
-    const posts = await Post.find({}).sort({createdAt: -1})
+    const user_id=req.user._id
+    const posts = await Post.find({user_id}).sort({createdAt: -1})
   
     res.status(200).json(posts)
+}
+//feed
+const getFeedPosts=async(req,res)=>{
+  console.log('test')
+  const posts = await Post.find().sort({createdAt: -1})
+
+  res.status(200).json(posts)
 }
 
 // get a single Post
@@ -39,17 +46,15 @@ const createPost = async (req, res) => {
     if(!message) {
       emptyFields.push('load')
     }
-    if(!likes) {
-      emptyFields.push('reps')
-    }
+ 
     if(emptyFields.length > 0) {
       return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
     }
   
     // add doc to db
     try {
-      //const user_id=req.user._id
-      const post = await Post.create({title, message, likes})
+      const user_id=req.user._id
+      const post = await Post.create({title, message, likes,user_id})
       res.status(200).json(post)
     } catch (error) {
       res.status(400).json({error: error.message})
@@ -97,5 +102,6 @@ module.exports={
     createPost,
     deletePost,
     likePost,
-    getPost
+    getPost,
+    getFeedPosts
 }
