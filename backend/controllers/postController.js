@@ -1,5 +1,7 @@
 const Post=require('../models/postModel')
 const mongoose = require('mongoose')
+const cloudinary=require('../middleware/cloudinary')
+
 
 const getPosts=async(req,res)=>{
     const user_id=req.user._id
@@ -36,8 +38,11 @@ const getPost = async (req, res) => {
 
 // create new workout
 const createPost = async (req, res) => {
-    const {title, message, likes} = req.body
-  
+    const {title, message} = req.body
+    const file = req.file;
+    
+    
+
     let emptyFields = []
   
     if(!title) {
@@ -46,16 +51,31 @@ const createPost = async (req, res) => {
     if(!message) {
       emptyFields.push('load')
     }
+    if(!file) {
+      emptyFields.push('load')
+    }
  
     if(emptyFields.length > 0) {
       return res.status(400).json({ error: 'Please fill in all the fields', emptyFields })
     }
-  
+  console.log('all filled')
     // add doc to db
     try {
+      const uploadResult = await cloudinary.uploader.upload(file.path);
+
       const user_id=req.user._id
-      const post = await Post.create({title, message, likes,user_id})
-      res.status(200).json(post)
+     //const post = await Post.create({title, message,user_id,fileURL:file.path})
+     const apost = new Post({
+      title,
+      message,
+      user_id,
+      fileURL: uploadResult.secure_url // Assuming the filename is stored in the `file` object
+    });
+
+    // Save the post to the database
+    const post = await apost.save();
+    
+     res.status(200).json(post)
     } catch (error) {
       res.status(400).json({error: error.message})
     }
@@ -78,24 +98,37 @@ const createPost = async (req, res) => {
   }
 
   const likePost= async (req, res) => {
-    const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'No such workout'})
-      }
+    const user_id = req.user._id;
+  const { id } = req.params;
 
-    try {
-      const post =await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
-      res.status(200).json(post)
-    } catch (err) {
-      console.log(err);
+  try {
+    // Find the post by id
+    const apost = await Post.findById(id);
+
+    if (!apost) {
+      return res.status(404).json({ error: 'No such post' });
     }
+
+    // Check if the user has already liked the post
+    const userIndex = apost.likes.indexOf(user_id);
+    if (userIndex > -1) {
+      // User has already liked, remove the like
+      apost.likes.splice(userIndex, 1);
+    } else {
+      // User has not liked, add the like
+      apost.likes.push(user_id);
+    }
+
+    // Save the updated post
+    const post = await apost.save();
+
+    res.status(200).json(post);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server Error' });
   }
+};
+  
 
 module.exports={
     getPosts,

@@ -7,17 +7,17 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Feed from './pages/Feed';
+import Feed from './pages/Feed';''
 
 
 function App() {
   const {user}=useAuthContext()
 
   return (
-    <div className="App">
+    <div class="App">
       <BrowserRouter>
       <Navbar/>
-      <div className='pages'>
+      <div className='pages  '>
         <Routes>
         <Route 
               path="/"

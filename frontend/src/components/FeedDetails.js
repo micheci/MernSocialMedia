@@ -22,7 +22,7 @@ function FeedDetails({post}) {
 
       
             if (response.ok) {
-                {console.log(json._id)}
+                {console.log(json)}
                 //{console.log(json.likes+1)}
                 //setNPosts(json)
                 dispatch({type: 'UPDATE_POST', payload: {json}})
@@ -37,9 +37,10 @@ function FeedDetails({post}) {
         
         <h4>{post.title}</h4>
         <p>{post.message}</p>
+        {post.fileURL && <img src={post.fileURL} alt="Post Image" />} {/* Display the post image */}
         {/* <p>{npost.length>0 ? npost.likes:  post.likes}</p> */}
         
-        <p>{post.likes}</p>
+        <p>{post.likes.length}</p>
         <button onClick={handleClick}>Like</button>
 
     </div>

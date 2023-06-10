@@ -3,6 +3,7 @@ import PostForm from '../components/PostForm'
 import PostDetails from '../components/PostDetails'
 import { usePostsContext } from '../hooks/usePostsContext'
 import {useAuthContext} from "../hooks/useAuthContext"
+import ProfileSection from '../components/ProfileSection'
 
 
 function Home() {
@@ -31,11 +32,16 @@ function Home() {
 
   return (
     <>
-    <div>Home</div>
-    <PostForm/>
-    {posts && posts.map((post) => (
-          <PostDetails key={post._id} post={post} />
-        ))}
+    <div class="flex h-screen  ">
+      <ProfileSection/>
+      <PostForm />
+      <div class='w-1/2 overflow-y-auto grid gap-3 grid-cols-3'>
+        {posts && posts.map((post) => (
+              <PostDetails  key={post._id} post={post} />
+            ))}
+      </div>
+    </div>
+    
 
     </>
   )

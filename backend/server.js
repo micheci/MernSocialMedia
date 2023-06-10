@@ -1,10 +1,14 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const cloudinary=require('./middleware/cloudinary')
+const upload=require('./middleware/multer')
+
 
 const postRoutes = require('./routes/posts')
 const userRoutes=require('./routes/user')
 const feedRoutes=require('./routes/feed')
+
 
 
 // express app

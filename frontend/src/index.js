@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <PostsContextProvider>
-        <App />
+        <App  />
       </PostsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

@@ -4,71 +4,99 @@ import { usePostsContext } from '../hooks/usePostsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 function PostForm() {
-  const { dispatch } = usePostsContext()
-  const {user}=useAuthContext()
+  const { dispatch } = usePostsContext();
+  const { user } = useAuthContext();
+
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null); // State for image preview
 
 
-    const [title,setTitle]=useState('')
-    const [message,setMessage]=useState('')
-    const [error, setError] = useState(null)
-
-    const likes=0;
-
-    const handleSubmit=async(e)=>{
-        e.preventDefault()
-        if(!user){
-          setError('You Must be logged in')
-          return
-        }
-        const post={title,message,likes}
-
-        const response=await fetch('/api/post', {
-            method: 'POST',
-            body: JSON.stringify(post),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization':`Bearer ${user.token}`
-            }
-          })
-          const json = await response.json()
-
-          if (!response.ok) {
-            setError(json.error)
-           
-          }
-
-          if(response.ok){
-            setTitle('')
-            setMessage('')
-           
-            console.log('new workout added', json)
-            dispatch({type: 'CREATE_POST', payload: json})
-          }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      console.error('You must be logged in');
+      return;
     }
+ try {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('title', title);
+    formData.append('message', message);
+  
 
+   
+      const response = await fetch('/api/post', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.error(json.error);
+        return;
+      }
+
+      setTitle('');
+      setMessage('');
+      setFile(null);
+
+      console.log('New post added:', json);
+      dispatch({ type: 'CREATE_POST', payload: json });
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+  
+    if (selectedFile) {
+      setFile(selectedFile);
+  
+      // Generate image preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
 
   return (
     
-    <form onSubmit={handleSubmit} >
-        <h3>Add post</h3>
-        <label>Message</label>
-        <input
-            type='text'
-            onChange={(e) => setMessage(e.target.value)}
-            value={message}
-        />
-        <label>title</label>
-        <input
-            type='text'
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-        />
-        {message}
-
-        <button>Add Post</button>
+    <form class="bg-gray-200 w-1/2  " onSubmit={handleSubmit} encType="multipart/form-data">
+      <h3>Add post</h3>
+      <label>Title</label>
+      <input
+        type="text"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
+      />
+      <label>Message</label>
+      <input
+        type="text"
+        onChange={(e) => setMessage(e.target.value)}
+        value={message}
+      />
+      <label>File</label>
+      <input
+        type="file"
+        name='file'
+        onChange={handleFileChange}
+      />
+      
+      {/* //{preview && <img src={preview} alt="Preview" />} */}
+      <button>Add Post</button>
     </form>
-  )
+
+  
+  );
 }
 
 export default PostForm

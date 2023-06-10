@@ -11,13 +11,22 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
+  // likesNumber: {
+  //   type: Number,
+  //   required: true
+  // },
   likes: {
-    type: Number,
-    required: true
+    type: [String], // Array of user IDs who liked the post
+    default: [],
   },
   user_id:{
     type:String,
     required:true
+  },
+  fileURL:{
+    type:String,
+    //required:true
+
   },
 }, { timestamps: true })
 

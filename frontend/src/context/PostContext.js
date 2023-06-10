@@ -18,19 +18,31 @@ export const postsReducer=(state,action)=>{
                 posts: state.posts.filter((w) => w._id !== action.payload._id)
             }
             case 'UPDATE_POST':
-              const { json } = action.payload;
-              const updatedPosts = state.posts.map((post) =>
-                post._id === json._id && !post.liked ? { ...post, likes: post.likes + 1, liked: true } : post
-              );
+
+            const { json} = action.payload;
+            const { likes } = json;
+
+            const updatedPosts = state.posts.map((post) =>
+            post._id === json._id ? { ...post, likes: [...likes] } : post
+          );
+          return {
+            ...state,
+            posts: updatedPosts,
+          };
+
+              // const { json } = action.payload;
+              // const updatedPosts = state.posts.map((post) =>
+              //   post._id === json._id && !post.liked ? { ...post, likes: post.likes + 1, liked: true } : post
+              // );
             
 
               // const { json } = action.payload;
               // const updatedPosts = state.posts.map((post) =>
               //   post._id === json._id ? { ...post, likes: post.likes + 1 } : post
               // );
-            return {
-               ...state, posts: updatedPosts
-               };
+            // return {
+            //    ...state, posts: updatedPosts
+            //    };
           default:
             return state
     }
