@@ -70,7 +70,7 @@ function PostForm() {
 
   return (
     
-    <form class="bg-gray-200 w-1/2  " onSubmit={handleSubmit} encType="multipart/form-data">
+    <form class="bg-red-800  text-center " onSubmit={handleSubmit} encType="multipart/form-data">
       <h3>Add post</h3>
       <label>Title</label>
       <input

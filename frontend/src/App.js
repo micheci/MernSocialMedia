@@ -14,10 +14,10 @@ function App() {
   const {user}=useAuthContext()
 
   return (
-    <div class="App">
+    <div class="App overflow-hidden	">
       <BrowserRouter>
       <Navbar/>
-      <div className='pages  '>
+      <div class='  pages overflow-hidden	 '>
         <Routes>
         <Route 
               path="/"
