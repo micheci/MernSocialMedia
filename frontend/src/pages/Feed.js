@@ -29,6 +29,10 @@ function Feed() {
       if(user){
         fetchWorkouts()
      }
+     else{
+      
+      console.log('user not logged in')
+     }
      
     }, [dispatch,user])
   return (

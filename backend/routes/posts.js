@@ -17,6 +17,8 @@ const {
 
 const router=express.Router()
 router.use(requireAuth)
+
+
 //get post
 router.get('/:id',getPost)
 

@@ -70,21 +70,21 @@ function PostForm() {
 
   return (
     
-    <form class="bg-red-800  text-center " onSubmit={handleSubmit} encType="multipart/form-data">
-      <h3>Add post</h3>
-      <label>Title</label>
+    <form className=" flex border mt-8 flex-col justify-center items-center " onSubmit={handleSubmit} encType="multipart/form-data">
+      <h3 className='text-center'>Add post</h3>
+      {/* <label>Title</label>
       <input
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-      />
-      <label>Message</label>
+      /> */}
+      <label className='text-center'>Message</label>
       <input
         type="text"
         onChange={(e) => setMessage(e.target.value)}
         value={message}
       />
-      <label>File</label>
+      <label className=''>File</label>
       <input
         type="file"
         name='file'

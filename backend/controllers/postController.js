@@ -52,7 +52,7 @@ const createPost = async (req, res) => {
       emptyFields.push('load')
     }
     if(!file) {
-      emptyFields.push('load')
+      emptyFields.push('file')
     }
  
     if(emptyFields.length > 0) {

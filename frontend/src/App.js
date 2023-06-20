@@ -14,17 +14,18 @@ function App() {
   const {user}=useAuthContext()
 
   return (
-    <div class="App overflow-hidden	">
+    <div className="App ">
       <BrowserRouter>
+      
       <Navbar/>
-      <div class='  pages overflow-hidden	 '>
+      <div className='  pages  '>
         <Routes>
         <Route 
               path="/"
               element={user? <Home />: <Navigate to='/login'/>}
             />
              <Route 
-              path="/login"
+              exact path="/login"
               element={!user? <Login />: <Navigate to="/"/>}
             />
             <Route 

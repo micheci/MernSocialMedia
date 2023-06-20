@@ -32,13 +32,13 @@ function Home() {
 
   return (
     <>
-    <div class="h-screen flex ">
-      <div class=' w-1/4 '>
+    <div className="h-screen flex ">
+      <div className=' w-1/4 bg-green-500 text-white'>
       <ProfileSection/>
       <PostForm />
       </div>
-      <div class='flex-1 flex overflow-hidden'>
-        <div class="flex-1 mt-20 gap-2 overflow-y-scroll grid grid-cols-3">
+      <div className='flex-1 flex overflow-hidden'>
+        <div className="flex-1 mt-20 gap-2 overflow-y-scroll grid grid-cols-3">
           {posts && posts.map((post) => (
                 <PostDetails  key={post._id} post={post} />
               ))}

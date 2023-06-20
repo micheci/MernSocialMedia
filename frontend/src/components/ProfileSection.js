@@ -3,9 +3,9 @@ import testPic from '../pics/testpic.png'
 
 const ProfileSection = () => {
   return (
-    <div class='profileSection text-center pt-20'>
-      <div class='textBox border-2  flex flex-col border-black '>
-        <img class=" object-cover w-40 h-32 rounded mx-auto" src={testPic} alt="Default avatar"/>
+    <div className='profileSection text-center pt-20'>
+      <div className='textBox border-2  flex flex-col border-black '>
+        <img className=" object-cover w-40 h-32 rounded mx-auto" src={testPic} alt="Default avatar"/>
         <h1>Name</h1>
         <h1>Lorem ipsum dolor sit amet, consectetur 
           adipiscing elit, sed do eiusmod tempor incididunt ut 
