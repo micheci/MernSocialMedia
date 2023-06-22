@@ -38,7 +38,7 @@ function Home() {
       <PostForm />
       </div>
       <div className='flex-1 flex overflow-hidden'>
-        <div className="flex-1 mt-20 gap-2 overflow-y-scroll grid grid-cols-3">
+        <div className="flex-1 pt-24 gap-3 pl-2 overflow-y-scroll grid grid-cols-3">
           {posts && posts.map((post) => (
                 <PostDetails  key={post._id} post={post} />
               ))}

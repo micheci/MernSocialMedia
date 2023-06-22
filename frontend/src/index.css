@@ -2,3 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+#title,#message{
+    color: black;
+}
+
+.feedPic{
+    height: 14rem;
+    
+    justify-content: center;
+}
+.likeBtn{
+    background-color: aqua;
+    border: 1px solid black ;
+    border-radius: 20%;
+}

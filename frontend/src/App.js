@@ -7,7 +7,8 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Feed from './pages/Feed';''
+import Feed from './pages/Feed';
+import About from './pages/About'
 
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
             <Route
               path="/feed"
               element={<Feed/>}
+            />
+             <Route 
+              path="/about"
+              element={<About/> }
             />
         </Routes>
       </div>

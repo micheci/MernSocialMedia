@@ -70,21 +70,23 @@ function PostForm() {
 
   return (
     
-    <form className=" flex border mt-8 flex-col justify-center items-center " onSubmit={handleSubmit} encType="multipart/form-data">
-      <h3 className='text-center'>Add post</h3>
-      {/* <label>Title</label>
+    <form className=" bg-green-500 flex flex-col justify-center items-center " onSubmit={handleSubmit} encType="multipart/form-data">
+      <h3 className=''>Add post</h3>
+      <label>Title</label>
       <input
+        id='title'
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-      /> */}
+      />
       <label className='text-center'>Message</label>
       <input
+        id='message'
         type="text"
         onChange={(e) => setMessage(e.target.value)}
         value={message}
       />
-      <label className=''>File</label>
+      <label >File</label>
       <input
         type="file"
         name='file'
@@ -92,7 +94,7 @@ function PostForm() {
       />
       
       {/* //{preview && <img src={preview} alt="Preview" />} */}
-      <button>Add Post</button>
+      <button className='border rounded bg-blue-500	'>Add Post</button>
     </form>
 
   

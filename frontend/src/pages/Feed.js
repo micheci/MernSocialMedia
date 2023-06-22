@@ -36,7 +36,7 @@ function Feed() {
      
     }, [dispatch,user])
   return (
-    <div>Feed
+    <div className='pt-24 ml-3 mr-3 gap-2 grid p-10 grid-cols-3'>
       {posts && posts.map((post) => (
         
           <FeedDetails key={post._id} post={post} />

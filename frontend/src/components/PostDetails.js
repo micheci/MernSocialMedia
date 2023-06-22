@@ -25,10 +25,10 @@ const handleClick=async()=>{
 }
 
   return (
-    <div className='post-details rounded border border-black'>
+    <div className='post-details rounded border  border-black'>
         <img className='h-48 w-full' src={post.fileURL}/>
-        <h4 className='text-center'>{post.title}</h4>
-        <p className='text-center'>{post.message}</p>
+        <h4 className='text-center'>Title:{post.title}</h4>
+        <p className='text-center'>Message:{post.message}</p>
         <div className=' flex place-content-around'>
           <p >{post.likes.length} likes</p>
           <button  onClick={handleClick}>delete</button>
