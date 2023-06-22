@@ -4,13 +4,13 @@ import aboutPic from '../pics/aboutPic.png'
 
 function About() {
   return (
-    <div className='flex col items-center justify-center h-screen pt-20'>
-        <div>
-        <h1 className='text-center '>About Gym-n-Chew</h1>
+    <div className='bg-gray-300 flex flex-col items-end justify-center h-screen pt-18'>
+        <div className='mr-64 pb-10'>
+        <h1 className='text-4xl'>About Gym-n-Chew</h1>
         </div>
-        <div className='flex'>
-        <img className='w-64' src={aboutPic}></img>
-       <h1 className='text-center w-3/4'>"Welcome to Gym-n-Chew, the ultimate
+        <div className='flex mr-64 gap-6 justify-end'>
+        <img className='w-80 ' src={aboutPic}></img>
+       <h1 className=' w-3/6'>"Welcome to Gym-n-Chew, the ultimate
          hub for fitness enthusiasts and food lovers
           alike! We're all about sharing the joys of
            staying active and indulging in delicious meals.

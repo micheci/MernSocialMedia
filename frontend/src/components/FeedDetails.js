@@ -36,8 +36,8 @@ function FeedDetails({post}) {
     <div className='post-details border flex justify-center  align-center flex-col  border-black'>
             {post.fileURL && <img className="feedPic"src={post.fileURL} alt="Post Image" />} {/* Display the post image */}
         {/* <p>{npost.length>0 ? npost.likes:  post.likes}</p> */}
-        <h1>title</h1>
-        <h4 >Title: {post.title}</h4>
+        <h1 className='text-center'>title</h1>
+        <h4 className='text-center'>Title: {post.title}</h4>
         <p className='text-center'>Message:{post.message}</p>
     
         <div  className='flex justify-between'>

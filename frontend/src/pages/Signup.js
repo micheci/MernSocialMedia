@@ -13,24 +13,29 @@ const Signup = () => {
   }
 
   return (
-    <form className="signup mt-10" onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
-      
-      <label>Email address:</label>
+    <form className="signup  h-screen items-center pt-20 bg-green-500" onSubmit={handleSubmit}>
+      <h3 className='text-center text-4xl font-bold '>Sign Up</h3>
+      <div className='mt-24 flex  justify-center'>
+      <label htmlFor="email">Email address:</label>
       <input 
+       className='border-solid border border-gray-400 rounded px-2 py-3'
+       id='email'
         type="email" 
         onChange={(e) => setEmail(e.target.value)} 
         value={email} 
       />
       <label>Password:</label>
       <input 
+       className='border-solid border border-gray-400 rounded px-2 py-3'
+       id='email'
         type="password" 
         onChange={(e) => setPassword(e.target.value)} 
         value={password} 
       />
 
-      <button disabled={isLoading}>Sign up</button>
+      <button className='bg-gray-500 hover:bg-gray-600 text-white font-bold w-16 rounded ml-3 py-3' disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
+      </div>
     </form>
   )
 }
