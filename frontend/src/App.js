@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Feed from './pages/Feed';
 import About from './pages/About'
+import css from '../src/index.css'
 
 
 function App() {
@@ -16,8 +17,12 @@ function App() {
 
   return (
     <div className="App ">
+
       <BrowserRouter>
-      
+      {/* <head>
+      <link href={css} rel="stylesheet"/>
+
+      </head> */}
       <Navbar/>
       <div className='  pages  '>
         <Routes>
