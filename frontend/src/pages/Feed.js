@@ -13,7 +13,7 @@ function Feed() {
 
   useEffect(() => {
       const fetchWorkouts = async () => {
-        const response = await fetch('/api/feed',{
+        const response = await fetch('https://mernsocialmedia-production.up.railway.app/api/feed',{
           headers:{
             'Authorization':`Bearer ${user.token}`
           }
