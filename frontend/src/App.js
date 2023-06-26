@@ -19,10 +19,7 @@ function App() {
     <div className="App ">
 
       <BrowserRouter>
-      {/* <head>
-      <link href={css} rel="stylesheet"/>
-
-      </head> */}
+   
       <Navbar/>
       <div className='  pages  '>
         <Routes>
