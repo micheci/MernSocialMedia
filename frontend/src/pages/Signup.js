@@ -27,7 +27,7 @@ const Signup = () => {
       <label>Password:</label>
       <input 
        className='border-solid border border-gray-400 rounded px-2 py-3'
-       id='email'
+       id='password'
         type="password" 
         onChange={(e) => setPassword(e.target.value)} 
         value={password} 
